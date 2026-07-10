@@ -258,6 +258,7 @@ function ArchiveCard({ item }: { item: ArchiveItem }) {
               const failedIdx = gallery.indexOf(current);
               setFailed((f) => ({ ...f, [failedIdx]: true }));
             }}
+            style={{ objectPosition: "center 30%" }}
             className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
           />
         ) : (
