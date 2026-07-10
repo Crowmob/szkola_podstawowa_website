@@ -207,7 +207,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   ru: {
-    nav: { about: "О школе", offer: "Программа", liceum: "Лицей", recruitment: "Поступление", contact: "Контакты", archive: "Из школьного календаря", apply: "Записаться", langAria: "Выбрать язык" },
+    nav: { about: "О школе", offer: "Программа", liceum: "В Лицей", recruitment: "Поступление", contact: "Контакты", archive: "Из школьного календаря", apply: "Записаться", langAria: "Выбрать язык" },
     hero: {
       eyebrow: "Частная начальная школа · Варшава",
       titlePre: "Коллегиум св.",
