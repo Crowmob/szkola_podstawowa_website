@@ -228,7 +228,7 @@ function HomePage() {
         </div>
 
         <div className="relative z-10 container-x h-full flex flex-col justify-center text-primary-foreground pt-20">
-          <p className="reveal inline-block text-primary-foreground uppercase tracking-[0.3em] text-[11px] sm:text-xs md:text-sm font-semibold mb-4 sm:mb-5 px-3 py-1.5 rounded-full bg-accent/90 shadow-sm">
+          <p className="reveal inline-block text-accent-foreground uppercase tracking-[0.3em] text-[11px] sm:text-xs md:text-sm font-semibold mb-4 sm:mb-5 px-3 py-1.5 rounded-full bg-accent shadow-sm">
             {t.hero.eyebrow}
           </p>
           <h1 className="reveal font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl">
