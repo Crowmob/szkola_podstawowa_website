@@ -31,7 +31,7 @@ export type Dict = {
 
 export const translations: Record<Lang, Dict> = {
   pl: {
-    nav: { about: "O szkole", offer: "Oferta", liceum: "Liceum", recruitment: "Rekrutacja", contact: "Kontakt", archive: "Z kalendarza szkolnego", apply: "Zapisz się", langAria: "Wybierz język" },
+    nav: { about: "O szkole", offer: "Oferta", liceum: "Do Liceum", recruitment: "Rekrutacja", contact: "Kontakt", archive: "Z kalendarza szkolnego", apply: "Zapisz się", langAria: "Wybierz język" },
     hero: {
       eyebrow: "Szkoła Podstawowa Niepubliczna · Warszawa",
       titlePre: "Kolegium św.",
