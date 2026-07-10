@@ -471,7 +471,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   kk: {
-    nav: { about: "Мектеп туралы", offer: "Бағдарлама", liceum: "Лицей", recruitment: "Қабылдау", contact: "Байланыс", archive: "Мектеп күнтізбесінен", apply: "Тіркелу", langAria: "Тілді таңдау" },
+    nav: { about: "Мектеп туралы", offer: "Бағдарлама", liceum: "Лицейге", recruitment: "Қабылдау", contact: "Байланыс", archive: "Мектеп күнтізбесінен", apply: "Тіркелу", langAria: "Тілді таңдау" },
     hero: {
       eyebrow: "Жеке бастауыш мектеп · Варшава",
       titlePre: "Әулие",
