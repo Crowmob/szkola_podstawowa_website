@@ -119,7 +119,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   en: {
-    nav: { about: "About", offer: "Programme", liceum: "High School", recruitment: "Admissions", contact: "Contact", archive: "From the school calendar", apply: "Apply", langAria: "Choose language" },
+    nav: { about: "About", offer: "Programme", liceum: "To High School", recruitment: "Admissions", contact: "Contact", archive: "From the school calendar", apply: "Apply", langAria: "Choose language" },
     hero: {
       eyebrow: "Independent Primary School · Warsaw",
       titlePre: "Kolegium św.",
