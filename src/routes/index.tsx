@@ -220,14 +220,15 @@ function HomePage() {
           <img
             src={HERO_IMG}
             alt="Szkoła Podstawowa Kolegium św. Stanisława Kostki"
-            className="hidden sm:block w-full h-full object-cover object-center kenburns"
+            className="hidden sm:block w-full h-full object-cover kenburns"
+            style={{ objectPosition: "center 30%" }}
           />
           <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-primary via-primary to-[color-mix(in_oklab,var(--primary)_92%,transparent)]" />
-          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/45 via-primary/25 to-primary/70" />
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/35 to-primary/75" />
         </div>
 
         <div className="relative z-10 container-x h-full flex flex-col justify-center text-primary-foreground pt-20">
-          <p className="reveal text-accent uppercase tracking-[0.3em] text-[10px] sm:text-xs md:text-sm mb-4 sm:mb-5">
+          <p className="reveal inline-block text-accent-foreground uppercase tracking-[0.3em] text-[11px] sm:text-xs md:text-sm font-semibold mb-4 sm:mb-5 px-3 py-1.5 rounded-full bg-accent shadow-sm">
             {t.hero.eyebrow}
           </p>
           <h1 className="reveal font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl">
@@ -307,7 +308,7 @@ function HomePage() {
             })}
           </div>
 
-          <div className="mt-10 grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="mt-10 grid gap-6 max-w-xl mx-auto">
             <div className="reveal group bg-card rounded-2xl p-6 border border-border hover:border-accent/60 hover:shadow-xl transition-all flex flex-col items-center text-center">
               <div className="w-32 h-32 flex items-center justify-center">
                 <img src="/assets/srebrne-liceum.png" alt="Fundacja Dla Polonii" className="max-h-full max-w-full object-contain" />
@@ -316,25 +317,6 @@ function HomePage() {
               <p className="text-muted-foreground leading-relaxed text-sm">
                 Organ prowadzący szkołę. Fundacja wspiera edukację dzieci i młodzieży polskiego pochodzenia.
               </p>
-            </div>
-
-            <div className="reveal group bg-card rounded-2xl p-6 border border-border hover:border-accent/60 hover:shadow-xl transition-all flex flex-col items-center text-center">
-              <div className="w-32 h-32 rounded-full bg-accent/10 text-accent flex items-center justify-center">
-                <span className="font-display text-3xl font-bold">1,5%</span>
-              </div>
-              <h3 className="font-display text-xl text-primary mt-4 mb-2">Twoje 1,5% — mój powrót do Polski</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                Przekaż 1,5% podatku uczniom Kolegium św. Stanisława Kostki. Fundacja „Dla Polonii”, KRS:{" "}
-                <span className="font-semibold text-primary">0000423252</span>.
-              </p>
-              <a
-                href="https://www.fundacjadlapolonii.pl"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-3 text-accent font-semibold hover:underline text-sm"
-              >
-                Strona Fundacji „Dla Polonii” <ArrowRight className="w-4 h-4" />
-              </a>
             </div>
           </div>
         </div>

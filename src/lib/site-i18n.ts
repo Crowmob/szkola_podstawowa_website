@@ -31,7 +31,7 @@ export type Dict = {
 
 export const translations: Record<Lang, Dict> = {
   pl: {
-    nav: { about: "O szkole", offer: "Oferta", liceum: "Liceum", recruitment: "Rekrutacja", contact: "Kontakt", archive: "Z kalendarza szkolnego", apply: "Zapisz się", langAria: "Wybierz język" },
+    nav: { about: "O szkole", offer: "Oferta", liceum: "Do Liceum", recruitment: "Rekrutacja", contact: "Kontakt", archive: "Z kalendarza szkolnego", apply: "Zapisz się", langAria: "Wybierz język" },
     hero: {
       eyebrow: "Szkoła Podstawowa Niepubliczna · Warszawa",
       titlePre: "Kolegium św.",
@@ -119,7 +119,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   en: {
-    nav: { about: "About", offer: "Programme", liceum: "High School", recruitment: "Admissions", contact: "Contact", archive: "From the school calendar", apply: "Apply", langAria: "Choose language" },
+    nav: { about: "About", offer: "Programme", liceum: "To High School", recruitment: "Admissions", contact: "Contact", archive: "From the school calendar", apply: "Apply", langAria: "Choose language" },
     hero: {
       eyebrow: "Independent Primary School · Warsaw",
       titlePre: "Kolegium św.",
@@ -207,7 +207,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   ru: {
-    nav: { about: "О школе", offer: "Программа", liceum: "Лицей", recruitment: "Поступление", contact: "Контакты", archive: "Из школьного календаря", apply: "Записаться", langAria: "Выбрать язык" },
+    nav: { about: "О школе", offer: "Программа", liceum: "В Лицей", recruitment: "Поступление", contact: "Контакты", archive: "Из школьного календаря", apply: "Записаться", langAria: "Выбрать язык" },
     hero: {
       eyebrow: "Частная начальная школа · Варшава",
       titlePre: "Коллегиум св.",
@@ -295,7 +295,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   uk: {
-    nav: { about: "Про школу", offer: "Програма", liceum: "Ліцей", recruitment: "Вступ", contact: "Контакти", archive: "Зі шкільного календаря", apply: "Подати заявку", langAria: "Обрати мову" },
+    nav: { about: "Про школу", offer: "Програма", liceum: "До Ліцею", recruitment: "Вступ", contact: "Контакти", archive: "Зі шкільного календаря", apply: "Подати заявку", langAria: "Обрати мову" },
     hero: {
       eyebrow: "Приватна початкова школа · Варшава",
       titlePre: "Колегіум св.",
@@ -383,7 +383,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   be: {
-    nav: { about: "Пра школу", offer: "Праграма", liceum: "Ліцэй", recruitment: "Залічэнне", contact: "Кантакты", archive: "Са школьнага календара", apply: "Запісацца", langAria: "Выбраць мову" },
+    nav: { about: "Пра школу", offer: "Праграма", liceum: "У Ліцэй", recruitment: "Залічэнне", contact: "Кантакты", archive: "Са школьнага календара", apply: "Запісацца", langAria: "Выбраць мову" },
     hero: {
       eyebrow: "Прыватная пачатковая школа · Варшава",
       titlePre: "Калегіум св.",
@@ -471,7 +471,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   kk: {
-    nav: { about: "Мектеп туралы", offer: "Бағдарлама", liceum: "Лицей", recruitment: "Қабылдау", contact: "Байланыс", archive: "Мектеп күнтізбесінен", apply: "Тіркелу", langAria: "Тілді таңдау" },
+    nav: { about: "Мектеп туралы", offer: "Бағдарлама", liceum: "Лицейге", recruitment: "Қабылдау", contact: "Байланыс", archive: "Мектеп күнтізбесінен", apply: "Тіркелу", langAria: "Тілді таңдау" },
     hero: {
       eyebrow: "Жеке бастауыш мектеп · Варшава",
       titlePre: "Әулие",
@@ -558,3 +558,29 @@ export const translations: Record<Lang, Dict> = {
     footer: { rights: "Әулие Станислав Костка коллегиумы бастауыш мектебі — Варшава", followUs: "Бізді бақылаңыз" },
   },
 };
+
+// Orphan-fix: replace the space after a single-letter word (a, i, o, u, w, z, etc.)
+// with a non-breaking space so those short conjunctions/prepositions don't end a line.
+// Applied for languages with this typographic rule: PL, UK, RU, BE.
+const ORPHAN_LANGS: Lang[] = ["pl", "uk", "ru", "be"];
+const ORPHAN_RE = /(^|[\s(«„"'])([\p{L}])[  ]+(?=\p{L})/gu;
+function fixOrphans(str: string): string {
+  if (typeof str !== "string") return str;
+  return str.replace(ORPHAN_RE, (_m, pre, letter) => `${pre}${letter}\u00A0`);
+}
+function deepFix<T>(node: T): T {
+  if (typeof node === "string") return fixOrphans(node) as unknown as T;
+  if (Array.isArray(node)) return node.map(deepFix) as unknown as T;
+  if (node && typeof node === "object") {
+    const out: Record<string, unknown> = {};
+    for (const k of Object.keys(node as Record<string, unknown>)) {
+      out[k] = deepFix((node as Record<string, unknown>)[k]);
+    }
+    return out as unknown as T;
+  }
+  return node;
+}
+for (const lang of ORPHAN_LANGS) {
+  translations[lang] = deepFix(translations[lang]);
+}
+
