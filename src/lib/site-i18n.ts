@@ -383,7 +383,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   be: {
-    nav: { about: "Пра школу", offer: "Праграма", liceum: "Ліцэй", recruitment: "Залічэнне", contact: "Кантакты", archive: "Са школьнага календара", apply: "Запісацца", langAria: "Выбраць мову" },
+    nav: { about: "Пра школу", offer: "Праграма", liceum: "У Ліцэй", recruitment: "Залічэнне", contact: "Кантакты", archive: "Са школьнага календара", apply: "Запісацца", langAria: "Выбраць мову" },
     hero: {
       eyebrow: "Прыватная пачатковая школа · Варшава",
       titlePre: "Калегіум св.",
