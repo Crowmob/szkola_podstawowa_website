@@ -295,7 +295,7 @@ export const translations: Record<Lang, Dict> = {
   },
 
   uk: {
-    nav: { about: "Про школу", offer: "Програма", liceum: "Ліцей", recruitment: "Вступ", contact: "Контакти", archive: "Зі шкільного календаря", apply: "Подати заявку", langAria: "Обрати мову" },
+    nav: { about: "Про школу", offer: "Програма", liceum: "До Ліцею", recruitment: "Вступ", contact: "Контакти", archive: "Зі шкільного календаря", apply: "Подати заявку", langAria: "Обрати мову" },
     hero: {
       eyebrow: "Приватна початкова школа · Варшава",
       titlePre: "Колегіум св.",
