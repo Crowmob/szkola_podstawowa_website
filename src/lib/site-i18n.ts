@@ -558,3 +558,29 @@ export const translations: Record<Lang, Dict> = {
     footer: { rights: "Әулие Станислав Костка коллегиумы бастауыш мектебі — Варшава", followUs: "Бізді бақылаңыз" },
   },
 };
+
+// Orphan-fix: replace the space after a single-letter word (a, i, o, u, w, z, etc.)
+// with a non-breaking space so those short conjunctions/prepositions don't end a line.
+// Applied for languages with this typographic rule: PL, UK, RU, BE.
+const ORPHAN_LANGS: Lang[] = ["pl", "uk", "ru", "be"];
+const ORPHAN_RE = /(^|[\s(«„"'])([\p{L}])[  ]+(?=\p{L})/gu;
+function fixOrphans(str: string): string {
+  if (typeof str !== "string") return str;
+  return str.replace(ORPHAN_RE, (_m, pre, letter) => `${pre}${letter}\u00A0`);
+}
+function deepFix<T>(node: T): T {
+  if (typeof node === "string") return fixOrphans(node) as unknown as T;
+  if (Array.isArray(node)) return node.map(deepFix) as unknown as T;
+  if (node && typeof node === "object") {
+    const out: Record<string, unknown> = {};
+    for (const k of Object.keys(node as Record<string, unknown>)) {
+      out[k] = deepFix((node as Record<string, unknown>)[k]);
+    }
+    return out as unknown as T;
+  }
+  return node;
+}
+for (const lang of ORPHAN_LANGS) {
+  translations[lang] = deepFix(translations[lang]);
+}
+
