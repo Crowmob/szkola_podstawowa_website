@@ -220,10 +220,11 @@ function HomePage() {
           <img
             src={HERO_IMG}
             alt="Szkoła Podstawowa Kolegium św. Stanisława Kostki"
-            className="hidden sm:block w-full h-full object-cover object-center kenburns"
+            className="hidden sm:block w-full h-full object-cover kenburns"
+            style={{ objectPosition: "center 30%" }}
           />
           <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-primary via-primary to-[color-mix(in_oklab,var(--primary)_92%,transparent)]" />
-          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/45 via-primary/25 to-primary/70" />
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/35 to-primary/75" />
         </div>
 
         <div className="relative z-10 container-x h-full flex flex-col justify-center text-primary-foreground pt-20">
