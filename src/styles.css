@@ -118,7 +118,7 @@
 @utility float-slow { animation: float-slow 8s ease-in-out infinite; }
 
 @keyframes kenburns {
-  0% { transform: scale(1.05) translate(0, 0); }
-  100% { transform: scale(1.18) translate(-1.5%, -1%); }
+  0% { transform: scale(1.02); }
+  100% { transform: scale(1.08); }
 }
 @utility kenburns { animation: kenburns 24s ease-in-out infinite alternate; }
