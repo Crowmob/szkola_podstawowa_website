@@ -584,3 +584,82 @@ for (const lang of ORPHAN_LANGS) {
   translations[lang] = deepFix(translations[lang]);
 }
 
+// Extra labels for the redesigned rekrutacja section. Kept as a side table so
+// we don't have to reshape the main `Dict` type across all 6 languages.
+export type RecExtras = {
+  requirementsTitle: string;
+  requirementsLead: string;
+  downloadsTitle: string;
+  downloadsLead: string;
+  rulesTitle: string;
+  feesTitle: string;
+  feesNote: string;
+  contactHint: string;
+};
+
+export const recExtras: Record<Lang, RecExtras> = {
+  pl: {
+    requirementsTitle: "Wymagane dokumenty",
+    requirementsLead: "Komplet dokumentów, które należy złożyć w sekretariacie — osobiście, pocztą lub e-mailem.",
+    downloadsTitle: "Dokumenty do pobrania",
+    downloadsLead: "Formularze rekrutacyjne w formacie PDF.",
+    rulesTitle: "Zasady rekrutacji",
+    feesTitle: "Warunki odpłatności",
+    feesNote: "Informacje o czesnym i opłatach dodatkowych.",
+    contactHint: "Dokumenty wysyłamy również na e-mail: rekrutacja.kolegium@gmail.com",
+  },
+  en: {
+    requirementsTitle: "Required documents",
+    requirementsLead: "The full set of documents to be submitted to the office — in person, by post, or by e-mail.",
+    downloadsTitle: "Downloadable forms",
+    downloadsLead: "Application forms in PDF format.",
+    rulesTitle: "Admission rules",
+    feesTitle: "Tuition & fees",
+    feesNote: "Tuition and additional fees.",
+    contactHint: "Documents may also be sent to: rekrutacja.kolegium@gmail.com",
+  },
+  ru: {
+    requirementsTitle: "Необходимые документы",
+    requirementsLead: "Полный комплект документов, которые нужно подать в секретариат — лично, по почте или e-mail.",
+    downloadsTitle: "Документы для скачивания",
+    downloadsLead: "Анкеты в формате PDF.",
+    rulesTitle: "Правила набора",
+    feesTitle: "Стоимость обучения",
+    feesNote: "Плата за обучение и дополнительные взносы.",
+    contactHint: "Документы также можно отправить на: rekrutacja.kolegium@gmail.com",
+  },
+  uk: {
+    requirementsTitle: "Необхідні документи",
+    requirementsLead: "Повний комплект документів, які потрібно подати до секретаріату — особисто, поштою або e-mail.",
+    downloadsTitle: "Документи для завантаження",
+    downloadsLead: "Анкети у форматі PDF.",
+    rulesTitle: "Правила набору",
+    feesTitle: "Вартість навчання",
+    feesNote: "Плата за навчання та додаткові внески.",
+    contactHint: "Документи також можна надіслати на: rekrutacja.kolegium@gmail.com",
+  },
+  be: {
+    requirementsTitle: "Неабходныя дакументы",
+    requirementsLead: "Поўны камплект дакументаў, якія трэба падаць у сакратарыят — асабіста, поштай або e-mail.",
+    downloadsTitle: "Дакументы для спампоўкі",
+    downloadsLead: "Анкеты ў фармаце PDF.",
+    rulesTitle: "Правілы набору",
+    feesTitle: "Кошт навучання",
+    feesNote: "Плата за навучанне і дадатковыя ўзносы.",
+    contactHint: "Дакументы таксама можна даслаць на: rekrutacja.kolegium@gmail.com",
+  },
+  kk: {
+    requirementsTitle: "Қажетті құжаттар",
+    requirementsLead: "Хатшылыққа тапсырылатын құжаттардың толық жиынтығы — жеке өзі, пошта немесе e-mail арқылы.",
+    downloadsTitle: "Жүктеп алуға арналған құжаттар",
+    downloadsLead: "PDF пішіміндегі анкеталар.",
+    rulesTitle: "Қабылдау ережелері",
+    feesTitle: "Оқу ақысы",
+    feesNote: "Оқу ақысы және қосымша төлемдер.",
+    contactHint: "Құжаттарды мына мекенжайға да жіберуге болады: rekrutacja.kolegium@gmail.com",
+  },
+};
+for (const lang of ORPHAN_LANGS) {
+  recExtras[lang] = deepFix(recExtras[lang]);
+}
+
