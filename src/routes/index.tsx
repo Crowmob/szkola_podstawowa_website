@@ -31,8 +31,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { spDocs, zasadyDoc, type DocItem } from "@/lib/docs";
-import { translations, languageOptions, type Lang } from "@/lib/site-i18n";
+import { spDocs, zasadyDocs, requiredDocs, fees, type DocItem } from "@/lib/docs";
+import { translations, recExtras, languageOptions, type Lang } from "@/lib/site-i18n";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -224,25 +225,29 @@ function HomePage() {
             style={{ objectPosition: "center 30%" }}
           />
           <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-primary via-primary to-[color-mix(in_oklab,var(--primary)_92%,transparent)]" />
-          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/35 to-primary/75" />
+          {/* Lighter overall wash so faces stay bright */}
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-primary/25" />
+          {/* Targeted scrim behind the headline for readability */}
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-tr from-primary/85 via-primary/45 to-transparent" />
         </div>
 
         <div className="relative z-10 container-x h-full flex flex-col justify-center text-primary-foreground pt-20">
-          <h1 className="reveal font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl">
+          <h1 className="reveal font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
             {t.hero.titlePre}{" "}
             <span className="italic text-accent">{t.hero.titleAccent}</span>
           </h1>
-          <p className="reveal mt-5 sm:mt-7 text-base sm:text-lg md:text-2xl max-w-2xl text-primary-foreground/90 leading-relaxed">
+          <p className="reveal mt-5 sm:mt-7 text-base sm:text-lg md:text-2xl max-w-2xl text-primary-foreground leading-relaxed [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]">
             {t.hero.lead}
           </p>
           <div className="reveal mt-8 sm:mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 max-w-md sm:max-w-none">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full text-sm sm:text-base h-12 sm:h-14 px-5 sm:px-8 whitespace-nowrap w-full sm:w-auto justify-center">
               <a href="#rekrutacja">{t.hero.cta1} <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full text-sm sm:text-base h-12 sm:h-14 px-5 sm:px-8 bg-transparent text-primary-foreground border-primary-foreground/40 hover:bg-primary-foreground/10 hover:text-primary-foreground whitespace-nowrap w-full sm:w-auto justify-center">
+            <Button asChild size="lg" variant="outline" className="rounded-full text-sm sm:text-base h-12 sm:h-14 px-5 sm:px-8 bg-transparent text-primary-foreground border-primary-foreground/50 hover:bg-primary-foreground/10 hover:text-primary-foreground whitespace-nowrap w-full sm:w-auto justify-center">
               <a href="#o-szkole">{t.hero.cta2}</a>
             </Button>
           </div>
+
         </div>
 
         <a href="#o-szkole" className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-primary-foreground/80 hover:text-accent transition-colors" aria-label={t.hero.scrollAria}>
@@ -404,37 +409,170 @@ function HomePage() {
 
       {/* REKRUTACJA */}
       <section id="rekrutacja" className="py-24 md:py-32 container-x scroll-mt-24">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="reveal text-accent uppercase tracking-[0.25em] text-xs font-semibold mb-4">{t.rec.eyebrow}</p>
+        <div className="max-w-3xl mb-14">
+          <p className="reveal text-accent uppercase tracking-[0.25em] text-xs font-semibold mb-4 flex items-center gap-3">
+            <span className="w-8 h-px bg-accent inline-block" />
+            {t.rec.eyebrow}
+          </p>
           <h2 className="reveal font-display text-4xl md:text-5xl lg:text-6xl text-primary leading-tight">{t.rec.title}</h2>
           <p className="reveal mt-5 text-lg text-muted-foreground">{t.rec.lead}</p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          <DocsCard title={t.rec.zasady} subtitle={t.rec.zasadySub} icon={ShieldCheck} highlight items={[zasadyDoc]} downloadLabel={t.rec.download} />
-          <DocsCard title={t.rec.sp} subtitle={t.rec.spSub} icon={School} items={spDocs} downloadLabel={t.rec.download} />
-          <BridgeCard title={t.rec.bridge} subtitle={t.rec.bridgeSub} ctaLabel={t.liceum.ctaLink} />
+        {/* Two-column: requirements checklist + downloads/fees */}
+        <div className="grid lg:grid-cols-5 gap-6 lg:gap-8">
+          {/* Left — Wymagane dokumenty */}
+          <div className="reveal lg:col-span-3 rounded-3xl bg-card border border-border p-8 md:p-10">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-12 h-12 rounded-xl bg-primary text-primary-foreground flex items-center justify-center">
+                <ShieldCheck className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-display text-2xl md:text-3xl text-primary">{recExtras[lang].requirementsTitle}</h3>
+                <p className="text-sm text-muted-foreground mt-1">{recExtras[lang].requirementsLead}</p>
+              </div>
+            </div>
+            <ul className="space-y-3">
+              {requiredDocs.map((doc, i) => (
+                <li key={i} className="flex items-start gap-3 pb-3 border-b border-border/60 last:border-0">
+                  <span className="mt-0.5 shrink-0 w-6 h-6 rounded-full bg-accent/15 text-accent inline-flex items-center justify-center text-xs font-bold">
+                    {i + 1}
+                  </span>
+                  <span className="text-foreground/90 leading-relaxed">{doc}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 text-sm text-muted-foreground italic">{recExtras[lang].contactHint}</p>
+          </div>
+
+          {/* Right column stack */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {/* Rules PDFs */}
+            <div className="reveal rounded-3xl bg-primary text-primary-foreground p-7">
+              <div className="flex items-center gap-3 mb-4">
+                <FileText className="w-5 h-5 text-accent" />
+                <h3 className="font-display text-xl">{recExtras[lang].rulesTitle}</h3>
+              </div>
+              <ul className="space-y-2">
+                {zasadyDocs.map((doc) => (
+                  <li key={doc.name}>
+                    <a
+                      href={doc.files[0].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 rounded-xl bg-primary-foreground/10 hover:bg-accent hover:text-accent-foreground px-4 py-3 text-sm font-medium transition-colors group"
+                    >
+                      <span className="leading-snug">{doc.name}</span>
+                      <Download className="w-4 h-4 shrink-0 opacity-70 group-hover:opacity-100" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Downloads */}
+            <div className="reveal rounded-3xl bg-card border border-border p-7">
+              <div className="flex items-center gap-3 mb-1">
+                <Download className="w-5 h-5 text-accent" />
+                <h3 className="font-display text-xl text-primary">{recExtras[lang].downloadsTitle}</h3>
+              </div>
+              <p className="text-xs text-muted-foreground mb-4">{recExtras[lang].downloadsLead}</p>
+              <ul className="space-y-2">
+                {spDocs.map((doc) => (
+                  <li key={doc.name}>
+                    <a
+                      href={doc.files[0].url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-between gap-3 rounded-xl border border-border hover:border-accent hover:bg-accent/5 px-4 py-3 text-sm text-foreground transition-colors group"
+                      aria-label={`${t.rec.download}: ${doc.name}`}
+                    >
+                      <span className="leading-snug">{doc.name}</span>
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold tracking-wide text-accent shrink-0">
+                        PDF <Download className="w-3.5 h-3.5" />
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <div className="reveal mt-14 rounded-3xl bg-gradient-to-br from-primary to-primary/80 p-10 md:p-14 text-primary-foreground flex flex-col md:flex-row items-start md:items-center gap-8 justify-between">
+        {/* Fees table */}
+        <div className="reveal mt-8 rounded-3xl bg-secondary/60 border border-border p-8 md:p-10">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-lg bg-accent text-accent-foreground flex items-center justify-center">
+              <BookOpen className="w-5 h-5" />
+            </div>
+            <div>
+              <h3 className="font-display text-2xl md:text-3xl text-primary">{recExtras[lang].feesTitle}</h3>
+              <p className="text-sm text-muted-foreground">{recExtras[lang].feesNote}</p>
+            </div>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="rounded-2xl bg-card border border-border p-5">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">{fees.monthly.label}</div>
+              <div className="font-display text-2xl text-primary mt-1">{fees.monthly.value}</div>
+              <div className="text-xs text-muted-foreground mt-1">{fees.monthly.note}</div>
+            </div>
+            <div className="rounded-2xl bg-card border border-border p-5">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">{fees.enroll.label}</div>
+              <div className="font-display text-2xl text-primary mt-1">{fees.enroll.value}</div>
+              <div className="text-xs text-muted-foreground mt-1">{fees.enroll.note}</div>
+            </div>
+            <div className="rounded-2xl bg-card border border-border p-5">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">{fees.extras1_6.label}</div>
+              <ul className="mt-2 space-y-1 text-sm text-foreground/90">
+                {fees.extras1_6.items.map((it) => <li key={it}>• {it}</li>)}
+              </ul>
+            </div>
+            <div className="rounded-2xl bg-card border border-border p-5">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">{fees.extras7_8.label}</div>
+              <ul className="mt-2 space-y-1 text-sm text-foreground/90">
+                {fees.extras7_8.items.map((it) => <li key={it}>• {it}</li>)}
+              </ul>
+            </div>
+            <div className="rounded-2xl bg-card border border-border p-5">
+              <div className="text-xs uppercase tracking-wider text-muted-foreground">{fees.meals.label}</div>
+              <div className="font-display text-2xl text-primary mt-1">{fees.meals.value}</div>
+              <div className="text-xs text-muted-foreground mt-1">{fees.meals.note}</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bridge to Liceum + CTA */}
+        <div className="reveal mt-8 rounded-3xl bg-gradient-to-br from-primary to-primary/80 p-10 md:p-14 text-primary-foreground grid md:grid-cols-2 gap-8 items-center">
           <div>
             <h3 className="font-display text-3xl md:text-4xl">{t.rec.ctaTitle}</h3>
             <p className="mt-3 text-primary-foreground/85 max-w-xl">{t.rec.ctaLead}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-13 px-7">
+                <a href="mailto:rekrutacja.kolegium@gmail.com">
+                  <Mail className="mr-2 w-5 h-5" /> rekrutacja.kolegium@gmail.com
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full h-13 px-7 bg-transparent text-primary-foreground border-primary-foreground/50 hover:bg-primary-foreground/10 hover:text-primary-foreground">
+                <a href="tel:+48225592110">
+                  <Phone className="mr-2 w-5 h-5" /> +48 22 559 21 10
+                </a>
+              </Button>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full h-13 px-7">
-              <a href="mailto:sekretariat@liceumpolonijne.edu.pl">
-                <Mail className="mr-2 w-5 h-5" /> sekretariat@liceumpolonijne.edu.pl
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full h-13 px-7 bg-transparent text-primary-foreground border-primary-foreground/40 hover:bg-primary-foreground/10 hover:text-primary-foreground">
-              <a href="tel:+48225592110">
-                <Phone className="mr-2 w-5 h-5" /> +48 22 559 21 10
+          <div className="rounded-2xl bg-primary-foreground/10 border border-primary-foreground/20 p-6 backdrop-blur-sm">
+            <div className="flex items-center gap-3 mb-2">
+              <GraduationCap className="w-5 h-5 text-accent" />
+              <h4 className="font-display text-xl">{t.rec.bridge}</h4>
+            </div>
+            <p className="text-sm text-primary-foreground/85 mb-4">{t.rec.bridgeSub}</p>
+            <Button asChild variant="outline" className="rounded-full bg-transparent text-primary-foreground border-primary-foreground/50 hover:bg-accent hover:text-accent-foreground hover:border-accent">
+              <a href={LICEUM_URL} target="_blank" rel="noopener noreferrer">
+                {t.liceum.ctaLink} <ArrowRight className="ml-2 w-4 h-4" />
               </a>
             </Button>
           </div>
         </div>
       </section>
+
 
       {/* KONTAKT */}
       <section id="kontakt" className="py-24 md:py-32 bg-secondary/50 scroll-mt-24">
