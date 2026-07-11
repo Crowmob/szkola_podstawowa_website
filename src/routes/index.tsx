@@ -31,8 +31,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { spDocs, zasadyDoc, type DocItem } from "@/lib/docs";
-import { translations, languageOptions, type Lang } from "@/lib/site-i18n";
+import { spDocs, zasadyDocs, requiredDocs, fees, type DocItem } from "@/lib/docs";
+import { translations, recExtras, languageOptions, type Lang } from "@/lib/site-i18n";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
