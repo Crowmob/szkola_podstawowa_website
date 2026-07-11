@@ -225,25 +225,29 @@ function HomePage() {
             style={{ objectPosition: "center 30%" }}
           />
           <div className="sm:hidden absolute inset-0 bg-gradient-to-br from-primary via-primary to-[color-mix(in_oklab,var(--primary)_92%,transparent)]" />
-          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/55 via-primary/35 to-primary/75" />
+          {/* Lighter overall wash so faces stay bright */}
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-b from-primary/10 via-transparent to-primary/25" />
+          {/* Targeted scrim behind the headline for readability */}
+          <div className="hidden sm:block absolute inset-0 bg-gradient-to-tr from-primary/85 via-primary/45 to-transparent" />
         </div>
 
         <div className="relative z-10 container-x h-full flex flex-col justify-center text-primary-foreground pt-20">
-          <h1 className="reveal font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl">
+          <h1 className="reveal font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl leading-[1.05] max-w-5xl [text-shadow:0_2px_20px_rgba(0,0,0,0.45)]">
             {t.hero.titlePre}{" "}
             <span className="italic text-accent">{t.hero.titleAccent}</span>
           </h1>
-          <p className="reveal mt-5 sm:mt-7 text-base sm:text-lg md:text-2xl max-w-2xl text-primary-foreground/90 leading-relaxed">
+          <p className="reveal mt-5 sm:mt-7 text-base sm:text-lg md:text-2xl max-w-2xl text-primary-foreground leading-relaxed [text-shadow:0_1px_10px_rgba(0,0,0,0.55)]">
             {t.hero.lead}
           </p>
           <div className="reveal mt-8 sm:mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 max-w-md sm:max-w-none">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 rounded-full text-sm sm:text-base h-12 sm:h-14 px-5 sm:px-8 whitespace-nowrap w-full sm:w-auto justify-center">
               <a href="#rekrutacja">{t.hero.cta1} <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 shrink-0" /></a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full text-sm sm:text-base h-12 sm:h-14 px-5 sm:px-8 bg-transparent text-primary-foreground border-primary-foreground/40 hover:bg-primary-foreground/10 hover:text-primary-foreground whitespace-nowrap w-full sm:w-auto justify-center">
+            <Button asChild size="lg" variant="outline" className="rounded-full text-sm sm:text-base h-12 sm:h-14 px-5 sm:px-8 bg-transparent text-primary-foreground border-primary-foreground/50 hover:bg-primary-foreground/10 hover:text-primary-foreground whitespace-nowrap w-full sm:w-auto justify-center">
               <a href="#o-szkole">{t.hero.cta2}</a>
             </Button>
           </div>
+
         </div>
 
         <a href="#o-szkole" className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 text-primary-foreground/80 hover:text-accent transition-colors" aria-label={t.hero.scrollAria}>
