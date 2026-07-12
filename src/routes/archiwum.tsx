@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { ArrowLeft, ArrowUp, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 import { archiveItems, archiveCategories, type ArchiveItem } from "@/lib/archive-data";
@@ -9,19 +8,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 
-export const Route = createFileRoute("/archiwum")({
-  head: () => ({
-    meta: [
-      { title: "Z kalendarza szkolnego — Szkoła Podstawowa Kolegium św. Stanisława Kostki" },
-      { name: "description", content: "Archiwum wydarzeń, wycieczek i uroczystości z życia Szkoły Podstawowej Niepublicznej Kolegium św. Stanisława Kostki w Warszawie." },
-      { property: "og:title", content: "Z kalendarza szkolnego — Szkoła Podstawowa Kolegium św. Stanisława Kostki" },
-      { property: "og:description", content: "Archiwum wydarzeń z życia szkoły podstawowej w Warszawie." },
-    ],
-  }),
-  component: ArchivePage,
-});
-
-function ArchivePage() {
+export default function ArchivePage() {
   const [lang] = useState<Lang>("pl");
   const t = translations[lang];
   const [filter, setFilter] = useState<ArchiveItem["category"] | "all">("all");
