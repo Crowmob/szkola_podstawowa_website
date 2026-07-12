@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   GraduationCap,
@@ -35,19 +35,9 @@ import { spDocs, zasadyDocs, requiredDocs, fees, type DocItem } from "@/lib/docs
 import { translations, recExtras, languageOptions, type Lang } from "@/lib/site-i18n";
 
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Szkoła Podstawowa Niepubliczna Kolegium św. Stanisława Kostki — Warszawa" },
-      { name: "description", content: "Prywatna szkoła podstawowa w Warszawie (klasy 1–8). Indywidualny rozwój ucznia od pierwszej klasy, polskie tradycje, wsparcie dla dzieci ze Wschodu, ciągłość edukacji w naszym Liceum." },
-      { property: "og:title", content: "Szkoła Podstawowa Kolegium św. Stanisława Kostki — Warszawa" },
-      { property: "og:description", content: "Prywatna szkoła podstawowa w Warszawie (klasy 1–8). Indywidualny rozwój ucznia od pierwszej klasy." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: HomePage,
-});
+export default function HomePageRoute() {
+  return <HomePage />;
+}
 
 const LOGO = "/assets/logo.png";
 const HERO_IMG = "/assets/P9043056-1.jpg";
