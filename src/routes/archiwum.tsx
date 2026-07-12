@@ -233,8 +233,8 @@ function ArchiveCard({ item }: { item: ArchiveItem }) {
     setIdx((i) => (i + 1) % visible.length);
   };
   return (
-    <article className="group block rounded-2xl overflow-hidden border border-border bg-card hover:border-accent/60 hover:shadow-xl transition-all">
-      <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+    <article className="group flex h-full flex-col rounded-2xl overflow-hidden border border-border bg-card hover:border-accent/60 hover:shadow-xl transition-all">
+      <div className="relative aspect-[4/3] overflow-hidden bg-secondary shrink-0">
         {current ? (
           <img
             key={current}
@@ -275,14 +275,14 @@ function ArchiveCard({ item }: { item: ArchiveItem }) {
           </>
         )}
       </div>
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center justify-between text-xs mb-3">
           <span className="text-accent font-semibold uppercase tracking-wide">{item.category}</span>
           <span className="text-muted-foreground">{item.date}</span>
         </div>
-        <h3 className="font-display text-xl text-primary leading-snug">{item.title}</h3>
+        <h3 className="font-display text-xl text-primary leading-snug line-clamp-2 min-h-[3.5rem]">{item.title}</h3>
         {item.excerpt && (
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-4">
             {item.excerpt}
           </p>
         )}
