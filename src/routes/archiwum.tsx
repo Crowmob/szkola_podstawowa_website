@@ -280,9 +280,9 @@ function ArchiveCard({ item }: { item: ArchiveItem }) {
           <span className="text-accent font-semibold uppercase tracking-wide">{item.category}</span>
           <span className="text-muted-foreground">{item.date}</span>
         </div>
-        <h3 className="font-display text-xl text-primary leading-snug line-clamp-2 min-h-[3.5rem]">{item.title}</h3>
+        <h3 className="font-display text-xl text-primary leading-snug min-h-[3.5rem]">{item.title}</h3>
         {item.excerpt && (
-          <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-4">
+          <p className="mt-3 text-sm text-muted-foreground leading-relaxed min-h-[5.5rem]">
             {item.excerpt}
           </p>
         )}
