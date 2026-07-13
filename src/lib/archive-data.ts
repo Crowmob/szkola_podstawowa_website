@@ -1,3 +1,13 @@
+import kop0 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_48.jpeg.asset.json";
+import kop1 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_48_1.jpeg.asset.json";
+import kop2 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_48_2.jpeg.asset.json";
+import kop4 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_48_4.jpeg.asset.json";
+import kop5 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_48_5.jpeg.asset.json";
+import kop6 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_49.jpeg.asset.json";
+import kop7 from "@/assets/kopciuszek/WhatsApp_Image_2026-07-13_at_11_20_49_1.jpeg.asset.json";
+
+const kopciuszekImages = [kop2.url, kop0.url, kop1.url, kop4.url, kop5.url, kop6.url, kop7.url];
+
 export type ArchiveItem = {
   id: number;
   title: string;
@@ -12,6 +22,17 @@ export type ArchiveItem = {
 export const archiveCategories = ["Z życia szkoły"] as const;
 
 export const archiveItems: ArchiveItem[] = [
+  {
+    id: 9001,
+    title: "Kopciuszek — przedstawienie na zakończenie roku",
+    excerpt: "Przedstawienie „Kopciuszek” na zakończenie roku szkolnego z dedykacją dla rodziców.",
+    image: kopciuszekImages[0],
+    images: kopciuszekImages,
+    date: "2025-06-20",
+    url: "",
+    category: "Z życia szkoły",
+  },
+
   { id: 3153,
     title: "Politechnika Warszawska – zajęcia z fizyki",
     excerpt: "Uczniowie klas 6-8 SP odwiedzili Wydział Fizyki Politechniki Warszawskiej. Podczas pokazów mogli zobaczyć, jak działają prawa fizyki w naturze.",
