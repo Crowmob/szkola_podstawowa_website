@@ -302,13 +302,22 @@ function HomePage() {
 
           <div className="mt-10 grid gap-6 max-w-xl mx-auto">
             <div className="reveal group bg-card rounded-2xl p-6 border border-border hover:border-accent/60 hover:shadow-xl transition-all flex flex-col items-center text-center">
-              <div className="w-32 h-32 flex items-center justify-center">
-                <img src="/assets/srebrne-liceum.png" alt="Fundacja Dla Polonii" className="max-h-full max-w-full object-contain" />
+              <div className="w-32 h-32 rounded-full bg-accent/10 text-accent flex items-center justify-center">
+                <span className="font-display text-3xl font-bold">1,5%</span>
               </div>
-              <h3 className="font-display text-xl text-primary mt-4 mb-2">Fundacja „Dla Polonii”</h3>
+              <h3 className="font-display text-xl text-primary mt-4 mb-2">Twoje 1,5% — mój powrót do Polski</h3>
               <p className="text-muted-foreground leading-relaxed text-sm">
-                Organ prowadzący szkołę. Fundacja wspiera edukację dzieci i młodzieży polskiego pochodzenia.
+                Przekaż 1,5% podatku uczniom naszej szkoły. Fundacja „Dla Polonii”, KRS:{" "}
+                <span className="font-semibold text-primary">0000423252</span>.
               </p>
+              <a
+                href="https://www.fundacjadlapolonii.pl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-3 text-accent font-semibold hover:underline text-sm"
+              >
+                Strona Fundacji „Dla Polonii” <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </div>
